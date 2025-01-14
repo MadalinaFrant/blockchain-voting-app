@@ -1,0 +1,138 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.81.0",
+            "commitHash": "eeb90cda1969383f56a2637cbd3037bdf598841c",
+            "commitDate": "2024-09-04",
+            "channel": "Stable",
+            "short": "rustc 1.81.0 (eeb90cda1 2024-09-04)"
+        },
+        "contractCrate": {
+            "name": "voting-contract",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.53.2"
+        }
+    },
+    "name": "VotingContract",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "getCandidates",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<bytes>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getVoters",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<multi<Address,bool>>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getVotes",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<multi<bytes,u64>>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "add_candidate",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "candidate",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "register_voter",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "voter",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "vote",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "candidate",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    "events": [
+        {
+            "identifier": "candidateAdded",
+            "inputs": [
+                {
+                    "name": "candidate",
+                    "type": "bytes",
+                    "indexed": true
+                }
+            ]
+        },
+        {
+            "identifier": "voterRegistered",
+            "inputs": [
+                {
+                    "name": "voter",
+                    "type": "Address",
+                    "indexed": true
+                }
+            ]
+        },
+        {
+            "identifier": "voteCast",
+            "inputs": [
+                {
+                    "name": "voter",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "candidate",
+                    "type": "bytes",
+                    "indexed": true
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}
